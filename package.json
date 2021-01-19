@@ -7,6 +7,10 @@
   "typings": "dist/index.d.ts",
   "type": "commonjs",
   "module": "dist/key-utils.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terra-project/key-utils.git"
+  },
   "files": [
     "dist",
     "src"
