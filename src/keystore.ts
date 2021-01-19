@@ -13,14 +13,14 @@ export const encrypt = (message: string, password: string) => {
   const salt = CryptoJS.lib.WordArray.random(128 / 8)
   const key = CryptoJS.PBKDF2(password, salt, {
     keySize: keySize / 32,
-    iterations: iterations,
+    iterations: iterations
   })
 
   const iv = CryptoJS.lib.WordArray.random(128 / 8)
   const encrypted = CryptoJS.AES.encrypt(message, key, {
     iv: iv,
     padding: CryptoJS.pad.Pkcs7,
-    mode: CryptoJS.mode.CBC,
+    mode: CryptoJS.mode.CBC
   })
 
   const transitmessage = salt.toString() + iv.toString() + encrypted.toString()
@@ -40,13 +40,13 @@ export const decrypt = (transitmessage: string, password: string) => {
   const encrypted = transitmessage.substring(64)
   const key = CryptoJS.PBKDF2(password, salt, {
     keySize: keySize / 32,
-    iterations: iterations,
+    iterations: iterations
   })
 
   const decrypted = CryptoJS.AES.decrypt(encrypted, key, {
     iv: iv,
     padding: CryptoJS.pad.Pkcs7,
-    mode: CryptoJS.mode.CBC,
+    mode: CryptoJS.mode.CBC
   })
 
   return decrypted.toString(CryptoJS.enc.Utf8)
