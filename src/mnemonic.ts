@@ -2,7 +2,7 @@ import {
   LazyGradedVestingAccount,
   LCDClient,
   LCDClientConfig,
-  MnemonicKey,
+  MnemonicKey
 } from "@terra-money/terra.js"
 import wordlist from "./wordlist.json"
 
@@ -15,7 +15,7 @@ import wordlist from "./wordlist.json"
  */
 export const validateMnemonic = (mnemonic: string) => {
   const array = mnemonic.split(" ")
-  return array.every((word) => wordlist.includes(word)) && array.length === 24
+  return array.every(word => wordlist.includes(word)) && array.length === 24
 }
 
 /**
@@ -48,12 +48,12 @@ export const getMnemonicKeys = async (
           : undefined,
       balance: await terra.bank.balance(address),
       delegations: await terra.staking.delegations(address),
-      unbondingDelegations: await terra.staking.unbondingDelegations(address),
+      unbondingDelegations: await terra.staking.unbondingDelegations(address)
     }
   }
 
   return {
     118: { mnemonicKey: mk118, assets: await getAssets(mk118.accAddress) },
-    330: { mnemonicKey: mk330, assets: await getAssets(mk330.accAddress) },
+    330: { mnemonicKey: mk330, assets: await getAssets(mk330.accAddress) }
   }
 }
